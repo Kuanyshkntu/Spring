@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="toshibaHand" class="models.toshiba.ToshibaHand"
+          lazy-init="true" init-method="toshibaHandInit"
+          destroy-method="toshibaHandDestroy" scope="prototype"
+          depends-on="db"/>
+    <bean id="toshibaHead" class="models.toshiba.ToshibaHead"
+          lazy-init="true" init-method="toshibaHeadInitM"
+          destroy-method="toshibaHeadDestroyMethod" scope="prototype"
+          depends-on="db"/>
+    <bean id="toshibaLeg" class="models.toshiba.ToshibaLeg"
+          lazy-init="true" init-method="toshibaLegInitMethod"
+          destroy-method="toshibaLegDestroyMethod" scope="prototype"
+          depends-on="db"/>
+
+</beans>

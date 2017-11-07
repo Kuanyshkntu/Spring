@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <import resource="toshiba-context.xml"/>
+    <import resource="sony-context.xml"/>
+    <bean id="db" class="models.DB"/>
+    <bean class="utils.DemoPostProcessor"/>
+    <bean id="robot1" class="main.Robot" lazy-init="true">
+        <constructor-arg name="hand" ref="sonyHand"/>
+        <constructor-arg name="head" ref="sonyHead"/>
+        <constructor-arg name="leg" ref="sonyLeg"/>
+    </bean>
+    <bean id="robot2"
+          class="main.T1000" lazy-init="true">
+        <constructor-arg name="color" value="Black"
+                         index="0"/>
+        <constructor-arg name="weight" value="120"
+                         index="1"/>
+        <constructor-arg name="height" value="180"
+                         index="2"/>
+        <constructor-arg name="hand" ref="toshibaHand"
+                         index="3"/>
+        <constructor-arg name="head" ref="toshibaHead"
+                         index="4"/>
+        <constructor-arg name="leg" ref="toshibaLeg"
+                         index="5"/>
+
+    </bean>
+
+    <bean id="robot3" class="main.T1000" parent="base">
+        <constructor-arg name="color" value="Grey"
+                         index="0"/>
+        <constructor-arg name="weight" value="150"
+                         index="1"/>
+        <constructor-arg name="height" value="200"
+                         index="2"/>
+        <constructor-arg name="hand" ref="sonyHand"
+                         index="3"/>
+    </bean>
+    <bean id="base" abstract="true">
+        <constructor-arg name="head" ref="sonyHead"
+                         index="4"/>
+        <constructor-arg name="leg" ref="sonyLeg"
+                         index="5"/>
+    </bean>
+
+</beans>
